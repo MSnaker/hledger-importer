@@ -13,8 +13,8 @@ def len_str(*args) -> int:
 
     return totlen     
 
-sheetimport = wb['IMPORT']
-reason = "EXCEL IMPORT"
+sheetimport = wb['IMPORTBATCH']
+reason = "2018 EXCEL IMPORT"
 source = "Marco:assets:BancoBPM"
 
 
@@ -32,4 +32,5 @@ with open("./accounting/.hledger.journal", "a", encoding="utf-8") as fw:
         line2 = f"\t{destination:<{padding}}{amount}\n"
         line3 = f"\t{source:<{padding-1}}-{amount}\n"
         string_to_append = line1 + line2 + line3
+        # print(string_to_append)
         fw.write(string_to_append)
