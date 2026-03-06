@@ -1,0 +1,5 @@
+journalfile: ./accounting/.2019book.journal
+filename: ./INPUT/Balance_2019_2020_Q1.xlsx
+sheetname: IMPORTRECURRENT
+description: 2019-2020Q1 EXCEL IMPORT
+source: Marco:assets:BancoBPM

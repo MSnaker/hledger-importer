@@ -1,7 +1,12 @@
 from openpyxl import load_workbook
 from datetime import datetime
+import yaml
 
-wb = load_workbook(filename="INPUT/Balance_2018.xlsx")
+with open('conf.yml', 'r', encoding='utf-8') as fconf:
+    conf = yaml.safe_load(fconf)
+
+
+wb = load_workbook(filename=conf['filename'])
 
 def len_str(*args) -> int:
     totlen = 0
@@ -13,12 +18,12 @@ def len_str(*args) -> int:
 
     return totlen     
 
-sheetimport = wb['IMPORTBATCH']
-reason = "2018 EXCEL IMPORT"
-source = "Marco:assets:BancoBPM"
+sheetimport = wb[conf['sheetname']]
+reason = conf['description']
+source = conf['source']
 
 
-with open("./accounting/.hledger.journal", "a", encoding="utf-8") as fw:
+with open(conf['journalfile'], "a", encoding="utf-8") as fw:
     for row in sheetimport.rows:
         date = datetime.date(row[0].value)
         destination = row[1].value
