@@ -15,16 +15,23 @@ def len_str(*args) -> int:
 
 def conditional_get_col(category:dict) -> int | str:
     try:
+        if category['col'] is None: raise KeyError('Missing Column value in config file')
         column = ord((category['col']).upper()) - 65
-        if column is None: raise KeyError('Missing Column value in config file')
         return column
     except KeyError:
         value = category['val']
         return value
 
+def convert_to_date(val) -> datetime.date:
+    
+    if datetime == type(val): 
+        return val.strftime('%Y-%m-%d')
+    elif str == type(val): 
+        return datetime.fromisoformat(val).strftime('%Y-%m-d')
+
 def get_transaction(row) -> tuple:
 
-    date = datetime.date(row[transaction_date].value) if int == type(transaction_date) else datetime.date(transaction_date)
+    date = convert_to_date(row[transaction_date].value) if int == type(transaction_date) else convert_to_date(transaction_date)
     destination = row[transaction_dest].value if int == type(transaction_dest) else transaction_dest
     source = row[transaction_source].value if int == type(transaction_source) else transaction_source
     description = row[transaction_description].value if int == type(transaction_description) else transaction_description
@@ -50,21 +57,26 @@ transaction_description = conditional_get_col(conf['transaction description'])
 transaction_source = conditional_get_col(conf['transaction source'])
 transaction_dest = conditional_get_col(conf['transaction dest'])
 transaction_value = conditional_get_col(conf['transaction_value'])
-
-
+try:
+    data_range = range(conf['data']['start row'] - 1, conf['data']['end row'])
+except KeyError:
+    data_range = None
 
 with open(journalfile, "a", encoding="utf-8") as fw:
-    for row in worksheet.rows:
-        date, destination, source, description, value = get_transaction(row)
+    # rows_to_analyze = worksheet.rows[data_range[0] : data_range[1]] if data_range is not None else worksheet.rows
 
-        line1 = f"\n{date} {description}\n"
+    for i, row in enumerate(worksheet.rows):
+        if i in data_range:
+            date, destination, source, description, value = get_transaction(row)
 
-        len2 = len_str(destination, str(value)) + 8
-        len3 = len_str(source, str(value)) + 9
-        padding = max(len2,len3)
-        
-        line2 = f"\t{destination:<{padding}}{value}\n"
-        line3 = f"\t{source:<{padding-1}}-{value}\n"
-        string_to_append = line1 + line2 + line3
-        # print(string_to_append)
-        fw.write(string_to_append)
+            line1 = f"\n{date} {description}\n"
+
+            len2 = len_str(destination, str(value)) + 8
+            len3 = len_str(source, str(value)) + 9
+            padding = max(len2,len3)
+            
+            line2 = f"\t{destination:<{padding}}{value}\n"
+            line3 = f"\t{source:<{padding-1}}-{value}\n"
+            string_to_append = line1 + line2 + line3
+            # print(string_to_append)
+            fw.write(string_to_append)

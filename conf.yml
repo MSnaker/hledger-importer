@@ -1,17 +1,20 @@
-journalfile: ./accounting/.2021balance.journal
-filename: ./INPUT/Balance_2021.xlsm
-sheetname: Entrate
+journalfile: ./accounting/.2022book.journal
+filename: ./INPUT/Balance_2022Q1Q2.xlsm
+sheetname: Spese Occasionali
 transaction date:
   val: 2021-01-01
-  col: A
-transaction description: 
-  val: 2019-2020Q1 EXCEL IMPORT
-  col: D
+  col: f
 transaction source: 
-  val: Marco:assets:BancoBPM
-  col: B
+  val: Marco:assets:Allianz Bank:CC
+  col: d
 transaction dest: 
   val: expenses:various
-  col: C
+  col: c
+transaction description: 
+  val: PERIODICHE
+  col: e
 transaction_value:
-  col: E
+  col: g
+data:
+  start row: 2
+  end row: 135
