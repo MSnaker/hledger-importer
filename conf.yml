@@ -1,5 +1,17 @@
-journalfile: ./accounting/.2019book.journal
-filename: ./INPUT/Balance_2019_2020_Q1.xlsx
-sheetname: IMPORTRECURRENT
-description: 2019-2020Q1 EXCEL IMPORT
-source: Marco:assets:BancoBPM
+journalfile: ./accounting/.2021balance.journal
+filename: ./INPUT/Balance_2021.xlsm
+sheetname: Entrate
+transaction date:
+  val: 2021-01-01
+  col: A
+transaction description: 
+  val: 2019-2020Q1 EXCEL IMPORT
+  col: D
+transaction source: 
+  val: Marco:assets:BancoBPM
+  col: B
+transaction dest: 
+  val: expenses:various
+  col: C
+transaction_value:
+  col: E
