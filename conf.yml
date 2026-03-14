@@ -1,20 +1,22 @@
 journalfile: ./accounting/.2022book.journal
-filename: ./INPUT/Balance_2022Q1Q2.xlsm
-sheetname: Spese Occasionali
+filename: ./INPUT/Balance_2022Q3.xlsx
+sheetname: Out_all
 transaction date:
   val: 2021-01-01
-  col: f
+  col: a
 transaction source: 
   val: Marco:assets:Allianz Bank:CC
-  col: d
+  col: f
 transaction dest: 
-  val: expenses:various
-  col: c
+  val: Marco:assets:Allianz Bank:CC
+  col: e
 transaction description: 
   val: PERIODICHE
-  col: e
-transaction_value:
   col: g
+transaction value:
+  col: h
+transaction ticket:
+  col: i
 data:
   start row: 2
-  end row: 135
+  end row: 202
