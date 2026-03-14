@@ -36,7 +36,7 @@ def get_transaction(row) -> tuple:
     source = row[transaction_source].value if int == type(transaction_source) else transaction_source
     description = row[transaction_description].value if int == type(transaction_description) else transaction_description
     value = row[transaction_value].value
-    ticket = row[transaction_ticket].value if int == type(transaction_description) else None
+    ticket = row[transaction_ticket].value if int == type(transaction_ticket) else None
 
 
     return (date, destination, source, description, value, ticket)
@@ -83,6 +83,7 @@ with open(journalfile, "a", encoding="utf-8") as fw:
             
             value_source_stringified = f"{value_source:.2f}"
             value_dest_stringified = f"{value:.2f}"
+            if 0 == value: continue
             line1 = f"\n{date} {description}\n"
 
             len2 = len_str(destination, value_dest_stringified) + 8
