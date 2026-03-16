@@ -1,22 +1,23 @@
-journalfile: ./accounting/.2022book.journal
-filename: ./INPUT/Balance_2022Q3.xlsx
+journalfile: ./accounting/.2023book.journal
+filename: ./INPUT/Balance_2023.xlsx
 sheetname: Out_all
 transaction date:
-  val: 2021-01-01
+  val: 2023-01-01
   col: a
 transaction source: 
   val: Marco:assets:Allianz Bank:CC
-  col: f
+  col: b
 transaction dest: 
-  val: Marco:assets:Allianz Bank:CC
+  val: Marco:assets:Ticket Restaurant
   col: e
 transaction description: 
   val: PERIODICHE
-  col: g
+  col: f
 transaction value:
-  col: h
+  col: g
 transaction ticket:
-  col: i
+  col: h
+  val: 
 data:
   start row: 2
-  end row: 202
+  end row: 23
