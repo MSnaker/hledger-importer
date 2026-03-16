@@ -94,7 +94,7 @@ with open(journalfile, "a", encoding="utf-8") as fw:
             line2 = f"\t{destination:<{padding}}{value_dest_stringified}\n"
             line3 = f"\t{source:<{padding-1}}-{value_source_stringified}\n"
 
-            line4 = f"\t{ticket_desc:<{padding-1}}-{ticket_value}" if (ticket is not None and 0 != ticket) else ""
+            line4 = f"\t{ticket_desc:<{padding-1}}-{ticket_value}\n" if (ticket is not None and 0 != ticket) else ""
             string_to_append = line1 + line2 + line3 + line4
-            print(string_to_append)
-            # fw.write(string_to_append)
+            # print(string_to_append)
+            fw.write(string_to_append)
