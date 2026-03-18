@@ -24,7 +24,7 @@ def conditional_get_col(category:dict) -> int | str:
 
 def convert_to_date(val) -> datetime.date:
     
-    if datetime == type(val): 
+    if type(val) in [datetime.date, datetime]: 
         return val.strftime('%Y-%m-%d')
     elif str == type(val): 
         return datetime.fromisoformat(val).strftime('%Y-%m-d')
@@ -71,7 +71,7 @@ with open(journalfile, "a", encoding="utf-8") as fw:
     for i, row in enumerate(worksheet.rows):
         if i in data_range:
             date, destination, source, description, value, ticket = get_transaction(row)
-
+            if value is None: continue
             if (0 == ticket) or (ticket is None):
                 ticket_desc = ""
                 ticket_value = 0
